@@ -1,1 +1,20 @@
-<p>login works!</p>
+<h1>Ingresar (Login)</h1>
+
+<!--mat-form-field appearance="fill">
+    <mat-label>Ingrese su Correo</mat-label>
+    <input matInput placeholder="nombre@gmail.com" [formControl]="email" required>
+    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field-->
+<input type="email" [formControl]="email">
+<br>
+<input type="password" [formControl]="password">
+<br>
+{{getErrorMessage()}}
+<br>
+<button [disabled]="!email.valid">Ingresar</button>
+
+<br>
+{{ email.value }}
+
+<button mat-button color="primary">Primary</button>
+<button mat-raised-button color="primary">Primary</button>

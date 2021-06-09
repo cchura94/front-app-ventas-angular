@@ -5,6 +5,8 @@ import { InicioComponent } from './inicio/inicio.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { LoginComponent } from './login/login.component';
 import { ClienteRoutingModule } from './cliente-routing.module';
+import { MaterialModule } from '../material/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -17,7 +19,9 @@ import { ClienteRoutingModule } from './cliente-routing.module';
   ],
   imports: [
     CommonModule,
-    ClienteRoutingModule
+    ClienteRoutingModule,
+    MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class ClienteModule { }
