@@ -5,16 +5,19 @@
     <input matInput placeholder="nombre@gmail.com" [formControl]="email" required>
     <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
   </mat-form-field-->
-<input type="email" [formControl]="email">
-<br>
-<input type="password" [formControl]="password">
-<br>
-{{getErrorMessage()}}
-<br>
-<button [disabled]="!email.valid">Ingresar</button>
+
+<form [formGroup]="loginForm">  
+  <input type="email" formControlName="email">
+  <br>
+  <input type="password" formControlName="password">
+  <br>
+  {{getErrorMessage()}}
+  <br>
+  <button [disabled]="!loginForm.valid" (click)="ingresar()">Ingresar</button>
+</form>
 
 <br>
-{{ email.value }}
+{{ loginForm.value | json }}
 
 <button mat-button color="primary">Primary</button>
 <button mat-raised-button color="primary">Primary</button>

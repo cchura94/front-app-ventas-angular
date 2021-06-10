@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -8,20 +9,37 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  email = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl('', [Validators.required]);
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required])
+  })
 
-  constructor() { }
+  constructor(protected loginService: LoginService) { }
 
   ngOnInit(): void {
   }
 
   getErrorMessage() {
-    if (this.email.hasError('required')) {
+   /* if (this.loginForm.value.email.hasError('required')) {
       return 'el correo es Obligatorio';
     }
 
-    return this.email.hasError('email') ? 'El Correo no es Valido' : '';
+    return this.loginForm.value.email.hasError('email') ? 'El Correo no es Valido' : '';
+  */
+    return "";
+  }
+
+  ingresar(){
+    // realizar la petición al Servidor
+    this.loginService.login(this.loginForm.value).subscribe(
+      (res: any) => {
+        console.log(res);
+        localStorage.setItem("access_token", btoa(JSON.stringify(res)));
+      },
+      (error: any) => {
+        console.log(error)
+      }
+    )
   }
 
 }
