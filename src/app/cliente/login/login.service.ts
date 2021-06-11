@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http"
+import { environment } from "./../../../environments/environment"
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
+  baseUrl = environment.servidor1;
+
   constructor(protected http: HttpClient) { }
 
   login(datos:any){
-    return this.http.post("http://127.0.0.1:8000/api/auth/login", datos);
+    return this.http.post(`${this.baseUrl}/auth/login`, datos);
   }
 
   logout(){

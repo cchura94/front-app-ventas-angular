@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from './login.service';
 
 @Component({
@@ -14,7 +16,9 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', [Validators.required])
   })
 
-  constructor(protected loginService: LoginService) { }
+  constructor(protected loginService: LoginService, 
+              protected router: Router,
+              private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -35,11 +39,20 @@ export class LoginComponent implements OnInit {
       (res: any) => {
         console.log(res);
         localStorage.setItem("access_token", btoa(JSON.stringify(res)));
+        // redirect al /admin
+        this.router.navigate(["/admin"]);
       },
       (error: any) => {
         console.log(error)
+        this.openSnackBar(error.error.mensaje)
       }
     )
+  }
+
+  openSnackBar(mensaje: string) {
+    this._snackBar.open(mensaje, "cerrar", {
+      duration: 4000
+    });
   }
 
 }

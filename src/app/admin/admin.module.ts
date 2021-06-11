@@ -7,7 +7,14 @@ import { ProveedorComponent } from './proveedor/proveedor.component';
 import { PedidoComponent } from './pedido/pedido.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { AdminRoutingModule } from './admin-routing.module';
-
+import { NavegacionComponent } from './componentes/navegacion/navegacion.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import {MatTableModule} from '@angular/material/table';
 
 
 @NgModule({
@@ -17,11 +24,19 @@ import { AdminRoutingModule } from './admin-routing.module';
     ProductoComponent,
     ProveedorComponent,
     PedidoComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    NavegacionComponent
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatTableModule
   ]
 })
 export class AdminModule { }
