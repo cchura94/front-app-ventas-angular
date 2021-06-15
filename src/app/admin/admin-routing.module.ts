@@ -17,10 +17,7 @@ const routes: Routes = [
         path: 'categoria',
         component: CategoriaComponent
       },
-      {
-        path: 'proveedor',
-        component: ProveedorComponent
-      },
+    
       {
         path: 'producto',
         component: ProductoComponent

@@ -9,12 +9,10 @@ import { UsuarioComponent } from './usuario/usuario.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { NavegacionComponent } from './componentes/navegacion/navegacion.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import {MatTableModule} from '@angular/material/table';
+import { FormCategoriaDialogComponent } from './categoria/form-categoria-dialog/form-categoria-dialog.component';
+
+import { MaterialModule } from '../material/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,18 +23,15 @@ import {MatTableModule} from '@angular/material/table';
     ProveedorComponent,
     PedidoComponent,
     UsuarioComponent,
-    NavegacionComponent
+    NavegacionComponent,
+    FormCategoriaDialogComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatTableModule
+    MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { CategoriaService } from './categoria.service';
+import { FormCategoriaDialogComponent } from './form-categoria-dialog/form-categoria-dialog.component';
 
 export interface PeriodicElement {
   name: string;
@@ -7,18 +10,6 @@ export interface PeriodicElement {
   symbol: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
 
 @Component({
   selector: 'app-categoria',
@@ -27,12 +18,51 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class CategoriaComponent implements OnInit {
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['id', 'nombre', 'detalle', 'acciones'];
+  dataSource = [];
 
-  constructor() { }
+  constructor(public dialog: MatDialog, protected catService:CategoriaService) { }
 
   ngOnInit(): void {
+    this.catService.lista().subscribe(
+      (res: any) => {
+        this.dataSource = res;
+        console.log(res)
+      },
+      (error) => {
+        console.log(error);
+        
+      }
+    )
+  }
+
+  mostrarDialogCategoria(datos=null){
+    if(datos == null){
+
+      this.dialog.open(FormCategoriaDialogComponent, {
+        width: '450px'
+      })
+    }else{
+      this.dialog.open(FormCategoriaDialogComponent, {
+        width: '450px',
+        data: datos
+      })
+    }
+  }
+
+  eliminarCategoria(dato: any){
+    //this.dataSource.splice(2, 1);
+    if(confirm("Esta seguro de eliminar la categoria?")){
+      this.catService.elimianr(dato.id).subscribe(
+        (res) => {
+          console.log(res)
+        },
+        (error: any) => {
+          console.log(error)
+        }
+      )
+
+    }
   }
 
 }

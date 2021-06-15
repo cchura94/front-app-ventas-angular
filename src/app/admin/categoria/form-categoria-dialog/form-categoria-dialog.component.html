@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>{{(estado)?'Modificar Categoria':'Nueva categoria'}}</h1>
+
+<div mat-dialog-content>
+    <form [formGroup]="categoriaForm">
+        <mat-form-field>
+            <mat-label>Nombre categoria</mat-label>
+            <input matInput placeholder="Categoria" formControlName="nombre">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-hint>Ropa, Mueble</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Descripción categoria</mat-label>
+            <input matInput placeholder="Descripción" formControlName="detalle">
+        </mat-form-field>
+
+    </form>
+
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cerrar</button>
+    <button mat-button [disabled]="!categoriaForm.valid"
+    [mat-dialog-close]="categoriaForm.value"
+    (click)="guardarCategoria()" *ngIf="!estado">
+        Guardar Categoria
+    </button>
+
+    <button mat-button [disabled]="!categoriaForm.valid"
+    [mat-dialog-close]="categoriaForm.value"
+    (click)="modificarCategoria()" *ngIf="estado">
+        Modificar Categoria
+    </button>
+
+</div>
