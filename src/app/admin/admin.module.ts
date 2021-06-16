@@ -13,6 +13,7 @@ import { FormCategoriaDialogComponent } from './categoria/form-categoria-dialog/
 
 import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormProductoDialogComponent } from './producto/form-producto-dialog/form-producto-dialog.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     PedidoComponent,
     UsuarioComponent,
     NavegacionComponent,
-    FormCategoriaDialogComponent
+    FormCategoriaDialogComponent,
+    FormProductoDialogComponent
   ],
   imports: [
     CommonModule,

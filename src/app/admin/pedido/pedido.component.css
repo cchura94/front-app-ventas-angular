@@ -1,0 +1,12 @@
+.lista-prod-card{
+    width: 70%;
+    float: left;
+}
+.lista-carrito-card{
+    width: 25%;
+    float: left;
+}
+
+table {
+    width: 100%;
+  }
