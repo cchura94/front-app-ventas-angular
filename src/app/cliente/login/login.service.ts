@@ -12,7 +12,7 @@ export class LoginService {
   constructor(protected http: HttpClient) { }
 
   login(datos:any){
-    return this.http.post(`${this.baseUrl}/auth/login`, datos);
+    return this.http.post(`${this.baseUrl}/auth/login`, datos,{});
   }
 
   logout(){
